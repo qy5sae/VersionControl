@@ -88,8 +88,7 @@ namespace excel04
                 if (f.Elevator)
                     values[counter, 4] = "Igen";
                 else
-                    values[counter, 4] = "Nem";
-                values[counter, 4] = f.Elevator;
+                    values[counter, 4] = "Nem"; ;
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
