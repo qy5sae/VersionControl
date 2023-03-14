@@ -12,9 +12,16 @@ namespace excel04
 {
     public partial class Form1 : Form
     {
+        List<Flat> Flats;
+        RealEstateEntities context = new RealEstateEntities();
         public Form1()
-        {
+        {            
             InitializeComponent();
+            LoadData();
+        }
+        void LoadData()
+        {
+            Flats = context.Flats.ToList();
         }
     }
 }
