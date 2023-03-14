@@ -85,11 +85,15 @@ namespace excel04
                 values[counter, 1] = f.Vendor;
                 values[counter, 2] = f.Side;
                 values[counter, 3] = f.District;
+                if (f.Elevator)
+                    values[counter, 4] = "Igen";
+                else
+                    values[counter, 4] = "Nem";
                 values[counter, 4] = f.Elevator;
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "";
+                values[counter, 8] = "="+GetCell(counter+2,8)+"*1000000"+"/"+ GetCell(counter + 2, 7);
                 counter++;
             }
 
