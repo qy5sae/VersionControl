@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace MnbCurrencyReader2
@@ -20,8 +21,28 @@ namespace MnbCurrencyReader2
         {
             InitializeComponent();
             dataGridView1.DataSource = Rates;
-            
+
             GetXmlData(fuggveny());
+            PrintChart();
+        }
+
+        private void PrintChart()
+        {
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         private string fuggveny()
@@ -49,10 +70,19 @@ namespace MnbCurrencyReader2
             {
                 var date = item.GetAttribute("date");
 
+                var rate = (XmlElement)item.ChildNodes[0];
+                var currency = rate.GetAttribute("curr");
+                var value = decimal.Parse(rate.InnerText);
+                var unit = int.Parse(rate.GetAttribute("unit"));
+
                 Rates.Add(new RateData()
                 {
-                    Date = DateTime.Parse(date)
-                });
+                    Date = DateTime.Parse(date),
+                    Currency = currency,
+                    Value = unit!=0 ? value / unit :0 //értékadásnál így a legegyszerűbb az if
+                }) ;
+
+                
                 
             }
             
