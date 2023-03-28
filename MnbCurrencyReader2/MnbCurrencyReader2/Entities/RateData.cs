@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MnbCurrencyReader2.Entities
 {
-    class RateData
+    public class RateData
     {
         public DateTime Date { get; set; }
 
