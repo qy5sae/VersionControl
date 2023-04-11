@@ -29,13 +29,31 @@ namespace week6_mikulasgyar
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Location = new System.Drawing.Point(56, 47);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(574, 360);
+            this.MainPanel.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MainPanel);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel MainPanel;
     }
 }
 
